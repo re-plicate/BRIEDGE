@@ -1,10 +1,6 @@
 # !usr/bin/env python
 # -*- coding:utf-8 _*-
-"""
-@Author: Huiqiang Xie
-@File: EurDataset.py
-@Time: 2021/3/31 23:20
-"""
+
 
 import os
 import pickle
@@ -27,7 +23,7 @@ class EurDataset(Dataset):
     def __len__(self):
         return len(self.data)
 
-def collate_data(batch):        #目测是排好序的[batch_size, seq_len]
+def collate_data(batch):        
 
     batch_size = len(batch)
     max_len = max(map(lambda x: len(x), batch))   # get the max length of sentence in current batch
