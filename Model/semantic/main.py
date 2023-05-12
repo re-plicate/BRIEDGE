@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue May 26 16:59:14 2020
 
-@author: HQ Xie
-"""
 import os
 import argparse
 import time
@@ -24,7 +20,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--vocab-file', default='europarl/vocab.json', type=str)
 parser.add_argument('--checkpoint-path', default='checkpoints/deepsc-Rayleigh', type=str)
 parser.add_argument('--channel', default='Rayleigh', type=str, help = 'Please choose AWGN, Rayleigh, and Rician')
-parser.add_argument('--MAX-LENGTH', default=30, type=int)       #4-30可参考第8页的A部分第一段
+parser.add_argument('--MAX-LENGTH', default=30, type=int)      
 parser.add_argument('--MIN-LENGTH', default=4, type=int)
 parser.add_argument('--d-model', default=128, type=int)     #？
 parser.add_argument('--dff', default=512, type=int)         #？
@@ -46,9 +42,9 @@ def setup_seed(seed):
 def validate(epoch, args, net):
     test_eur = EurDataset('test')
     test_iterator = DataLoader(test_eur, batch_size=args.batch_size, num_workers=0,
-                                pin_memory=True, collate_fn=collate_data)   #表示要将load进来的数据是否要拷贝到pin_memory区中，其表示生成的Tensor数据是属于内存中的锁页内存区，这样将Tensor数据转义到GPU中速度就会快一些，默认为False。
+                                pin_memory=True, collate_fn=collate_data)   
     net.eval()
-    pbar = tqdm(test_iterator)      #https://zhuanlan.zhihu.com/p/163613814
+    pbar = tqdm(test_iterator)    
     total = 0
     with torch.no_grad():
         for sents in pbar:
@@ -70,10 +66,9 @@ def train(epoch, args, net, mi_net=None):
     train_eur= EurDataset('train')
     train_iterator = DataLoader(train_eur, batch_size=args.batch_size, num_workers=0,
                                 pin_memory=True, collate_fn=collate_data)
-    pbar = tqdm(train_iterator)  # 一个进度条封装包
+    pbar = tqdm(train_iterator)  
 
-    noise_std = np.random.uniform(SNR_to_noise(5), SNR_to_noise(10), size=(1))      #一个均匀分布[low,high)中随机采样，注意定义域是左闭右开，即包含low，不包含high. size: 输出样本数目，为int或元组(tuple)类型，例如，size=(m,n,k), 则输出m*n*k个样本，缺省时输出1个值。
-
+    noise_std = np.random.uniform(SNR_to_noise(5), SNR_to_noise(10), size=(1))     
     for sents in pbar:
         sents = sents.to(device)
 
@@ -102,10 +97,10 @@ if __name__ == '__main__':
     # args.vocab_file = '/import/antennas/Datasets/hx301/' + args.vocab_file
     args.vocab_file = './txt/' + args.vocab_file
     """ preparing the dataset """
-    vocab = json.load(open(args.vocab_file, 'rb'))      # 以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等。
+    vocab = json.load(open(args.vocab_file, 'rb'))      
     token_to_idx = vocab['token_to_idx']
     num_vocab = len(token_to_idx)
-    pad_idx = token_to_idx["<PAD>"]     # 空白部分用‘<PAD>’对应的数字填充。
+    pad_idx = token_to_idx["<PAD>"]  
     start_idx = token_to_idx["<START>"]
     end_idx = token_to_idx["<END>"]
 
