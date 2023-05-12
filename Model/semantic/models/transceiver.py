@@ -1,22 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon May 25 20:33:53 2020
 
-@author: HQ Xie
-这是一个Transformer的网络结构
-"""
-"""
-Transformer includes:
-    Encoder
-        1. Positional coding
-        2. Multihead-attention
-        3. PositionwiseFeedForward
-    Decoder
-        1. Positional coding
-        2. Multihead-attention
-        3. Multihead-attention
-        4. PositionwiseFeedForward
-"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
