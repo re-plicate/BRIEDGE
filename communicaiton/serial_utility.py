@@ -132,8 +132,8 @@ def Serial_Command(User_ifo, command_dict, ROBOT_COM={'ARM':'COM7', 'CAR':'COM18
 
     elif command_dict['Robot'] == 3:
         print('{} is controling FLY'.format(User_ifo[0]))
-        model = torch.load('./CE_128_model')
-        User_ifo = model(command_dict['Action'])
+        CE = torch.load('./CE_128_model')
+        User_ifo = CE(command_dict['Action'])
         port1 = ROBOT_COM['AGENT']
         baud = baud_list[2]
         order = [command_dict['Action'], User_ifo]
