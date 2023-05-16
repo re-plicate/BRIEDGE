@@ -1,5 +1,9 @@
 # BRIEDGE
-It is the first code version of the systematic algorithm on server or light server.
+It is the first code version of the systematic algorithm on server.
+<video width="640" height="480" controls>
+    <source src="https://raw.githubusercontent.com/<username>/<repository>/<branch>/video.mp4" type="video/mp4">
+</video>
+
 
 ## path setting
 It should correct the absolute path of the directory before running the system
