@@ -1,7 +1,7 @@
 # BRIEDGE
 It is the first code version of the systematic algorithm on server.
 <video width="640" height="480" controls>
-    <source src="https://raw.githubusercontent.com/<username>/<repository>/<branch>/video.mp4" type="video/mp4">
+    <source src="https://github.com/re-plicate/BRIEDGE/edit/main/Multi-brain to Multi-robot Interaciton with BRIEDGE" type="video/mp4">
 </video>
 
 
